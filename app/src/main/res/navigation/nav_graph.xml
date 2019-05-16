@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bmiMainFragment">
+
+    <fragment
+        android:id="@+id/bmiMainFragment"
+        android:name="com.lesnyg.mykotlinexam.BmiMainFragment"
+        android:label="fragment_bmi_main"
+        tools:layout="@layout/fragment_bmi_main" >
+        <action
+            android:id="@+id/action_bmiMainFragment_to_bmiResultFragment"
+            app:destination="@id/bmiResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bmiResultFragment"
+        android:name="com.lesnyg.mykotlinexam.BmiResultFragment"
+        android:label="fragment_bmi_result"
+        tools:layout="@layout/fragment_bmi_result" />
+</navigation>
