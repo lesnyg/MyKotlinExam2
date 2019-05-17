@@ -1,4 +1,4 @@
-package com.lesnyg.mykotlinexam
+package com.lesnyg.mykotlinexam.bmi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.lesnyg.mykotlinexam.R
 
 class BmiMainActivity : AppCompatActivity() {
     private lateinit var navController:NavController

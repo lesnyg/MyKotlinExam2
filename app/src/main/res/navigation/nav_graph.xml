@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/bmiMainFragment"
-        android:name="com.lesnyg.mykotlinexam.BmiMainFragment"
+        android:name="com.lesnyg.mykotlinexam.bmi.BmiMainFragment"
         android:label="fragment_bmi_main"
         tools:layout="@layout/fragment_bmi_main" >
         <action
@@ -16,7 +16,16 @@
     </fragment>
     <fragment
         android:id="@+id/bmiResultFragment"
-        android:name="com.lesnyg.mykotlinexam.BmiResultFragment"
+        android:name="com.lesnyg.mykotlinexam.bmi.BmiResultFragment"
         android:label="fragment_bmi_result"
-        tools:layout="@layout/fragment_bmi_result" />
+        tools:layout="@layout/fragment_bmi_result" >
+        <argument
+            android:name="height"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <argument
+            android:name="weight"
+            app:argType="float"
+            android:defaultValue="0.0" />
+    </fragment>
 </navigation>

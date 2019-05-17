@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BmiMainFragment">
+    tools:context=".bmi.BmiMainFragment">
 
     <EditText
         android:id="@+id/height_edit"
