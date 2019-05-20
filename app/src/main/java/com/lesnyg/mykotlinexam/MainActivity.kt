@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val subjects = arrayListOf<Subject>()
         subjects.add(Subject("BMI", BmiMainActivity::class.java))
         subjects.add(Subject("스탑워치", StopWatchMainActivity::class.java))
-        subjects.add(Subject("전자액자(provider)", MyGalleryMainActivity::class.java))
+        subjects.add(Subject("전자액자(provider,viewpager2)", MyGalleryMainActivity::class.java))
 
 
         adapter.items = subjects

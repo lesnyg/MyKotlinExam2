@@ -2,16 +2,20 @@ package com.lesnyg.mykotlinexam.mygallery
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.lesnyg.mykotlinexam.R
+import com.lesnyg.mykotlinexam.databinding.ItemPhotoBinding
 import com.lesnyg.mykotlinexam.logd
 import com.lesnyg.mykotlinexam.toast
+import kotlinx.android.synthetic.main.activity_my_gallery_main.*
+import kotlin.concurrent.timer
 
 class MyGalleryMainActivity : AppCompatActivity() {
     companion object {
@@ -34,7 +38,7 @@ class MyGalleryMainActivity : AppCompatActivity() {
                 )
             ) {
                 //이전에 이미 권한이 거부되었을 때 설명
-                AlertFragment{
+                AlertFragment {
                     //권한요청 다시한번 함
                     ActivityCompat.requestPermissions(
                         this,
@@ -84,7 +88,56 @@ class MyGalleryMainActivity : AppCompatActivity() {
             null,
             MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC"
         )
-//        Log.d(TAG, cursor?.toString())
-        logd(cursor.toString())
+
+        val items = arrayListOf<Photo>()
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                val uri =
+                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                logd(uri.toString())
+                items.add(Photo(uri))
+            }
+            cursor.close()
+        }
+        val adapter = PhotoAdapter()
+        adapter.items = items
+        adapter.notifyDataSetChanged()
+
+        view_pager.adapter = adapter
+
+        timer(period = 3000) {
+            runOnUiThread {
+                if (view_pager.currentItem < adapter.itemCount - 1) {
+                    view_pager.currentItem = view_pager.currentItem + 1
+                } else {
+                    view_pager.currentItem = 0
+                }
+            }
+        }
     }
+}
+
+//Model
+class Photo(val uri: String)
+
+//Adapter
+class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+    var items = arrayListOf<Photo>()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
+        val binding = ItemPhotoBinding.bind(view)
+        return PhotoViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+
+    override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
+        holder.binding.photo = items[position]
+    }
+
+    class PhotoViewHolder(val binding: ItemPhotoBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    }
+
 }

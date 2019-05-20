@@ -3,12 +3,11 @@ package com.lesnyg.mykotlinexam.mygallery
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
-class AlertFragment(private val onClickListener:() -> Unit) : DialogFragment() {
-//    interface  OnclickListener{
+class AlertFragment(private val onClickListener: () -> Unit) : DialogFragment() {
+    //    interface  OnclickListener{
 //        fun onClick()
 //    }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -18,7 +17,7 @@ class AlertFragment(private val onClickListener:() -> Unit) : DialogFragment() {
         builder.setPositiveButton("수락", { dialog, which ->
             onClickListener.invoke()
         })
-        builder.setNegativeButton("거부",null)
+        builder.setNegativeButton("거부", null)
         return builder.create()
     }
 
