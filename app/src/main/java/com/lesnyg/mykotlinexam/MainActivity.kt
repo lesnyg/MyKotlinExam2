@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.lesnyg.mykotlinexam.bmi.BmiMainActivity
 import com.lesnyg.mykotlinexam.databinding.ItemSubjectBinding
+import com.lesnyg.mykotlinexam.mygallery.MyGalleryMainActivity
 import com.lesnyg.mykotlinexam.stopwatch.StopWatchMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         val subjects = arrayListOf<Subject>()
         subjects.add(Subject("BMI", BmiMainActivity::class.java))
         subjects.add(Subject("스탑워치", StopWatchMainActivity::class.java))
+        subjects.add(Subject("전자액자(provider)", MyGalleryMainActivity::class.java))
 
 
         adapter.items = subjects
